@@ -1,5 +1,23 @@
 import tweepy
+import os
 from datetime import datetime
+from google.cloud import secretmanager  # Library for interacting with the GCP Secret Manager API
+
+# Define global variables for script
+project_id = os.environ["GCP_PROJECT"] # Get current GCP project name
+client = secretmanager.SecretManagerServiceClient() # Establish client service for connecting to GCP Secret Manager
+
+
+# Define get_secrets function
+def get_secrets(secret_request): # Function takes in a secret name as the secret_request argument
+    name = f"projects/{project_id}/secrets/{secret_request}/versions/latest"
+    """
+    Uses project_id variable established in line 9, and the secret_request argument input on line 14
+    to create a query string for the name of the secret to extract from GCP Secret Manager.
+    """
+    # Get response from client service using the name variable as input
+    response = client.access_secret_version(name=name)
+    return response.payload.data.decode("UTF-8") # Return the secret value from clients response in utf-8 encoded format
 
 # Adding parameters to main did not work
 def main():
