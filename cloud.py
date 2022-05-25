@@ -1,8 +1,8 @@
 import tweepy
 from datetime import datetime
 
-
-def main(data, context):
+# Adding parameters to main did not work
+def main():
     consumer_key = get_secrets("consumer_key")
     consumer_secret = get_secrets("consumer_secret")
     key = get_secrets("key")
@@ -12,15 +12,7 @@ def main(data, context):
     auth.set_access_token(key, secret)
     api = tweepy.API(auth)
 
-    triggers = ["radical democrats", "impeach biden", "joe biden's america", "biden's america", "nazi's", "nazi",
-                "illegals", "regime", "trans-terrorism", "trump", "left-wing", "the establishment", "the far left",
-                "wacktivism", "president trump", "taking our guns", "lgb", "let's go brandon", "lets go brandon",
-                "targeted conservatives", "the left", "higher than hunter", "sleepy joe", "me too'd", "wall",
-                "build a wall", "america first", "dems", "fauci", "christianity", "woke politics", "woke",
-                "stolen from president trump", "not telling the truth", "election integrity", "gas prices",
-                "president trump", "return to god", "rino", "border", "constitutional conservative",
-                "great replacement", "jab", "radical left", "gestapo", "gazpacho", "biden administration",
-                "fascist", "antifa", "bidenflation", "aliens"]
+    triggers = ["this", "is", "a", "list", "of", "keywords"]
 
     following = tweepy.Cursor(api.get_friends).items()
     count = 1
