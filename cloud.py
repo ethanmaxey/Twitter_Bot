@@ -23,7 +23,10 @@ def get_secrets(secret_request):  # Function takes in a secret name as the secre
 
 
 # Adding parameters to main did not work
-def main():
+def main(event, context):
+    print("""This Function was triggered by messageId {} published at {}""".format(context.event_id, context.timestamp))
+    # This will print the information about the context passed to your main function upon execution.
+    # I haven't done anything with the 'event' arg here, but you should be able to print that as well if you want to see what it contains.
     consumer_key = get_secrets("consumer_key")
     consumer_secret = get_secrets("consumer_secret")
     key = get_secrets("key")
